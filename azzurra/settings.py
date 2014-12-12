@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'easy_thumbnails',
     'image_cropping',
+    'tinymce',
     'sito',
 )
 
@@ -74,7 +75,16 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'it-IT'
+
+
+ugettext = lambda s: s
+
+LANGUAGES = (
+  ('it', ('Italian')),
+  ('en', ('English')),
+)
+
 
 TIME_ZONE = 'UTC'
 
@@ -118,3 +128,19 @@ THUMBNAIL_PROCESSORS = (
 IMAGE_CROPPING_THUMB_SIZE = (1425, 500)
 #cropping = ImageRatioField('image', '1425x500', size_warning=True)
 IMAGE_CROPPING_SIZE_WARNING = True
+
+############# TINYMCE ################
+#TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "path/to/tiny_mce/tiny_mce.js")
+#TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tiny_mce")
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'width':800,
+    'height':500,
+}
+TINYMCE_SPELLCHECKER = True
+##TINYMCE_COMPRESSOR = True
+
+########## Fine TinyMCE #######################

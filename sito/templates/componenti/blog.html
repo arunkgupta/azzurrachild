@@ -1,0 +1,7 @@
+
+
+{% for post in blog_list %}
+	<h4>{{post.titolo}}</4>
+	<h6>{{post.pub_date}}</h6>
+	<p>{{post.body|safe|truncatechars:250}}</p>
+{% endfor %}

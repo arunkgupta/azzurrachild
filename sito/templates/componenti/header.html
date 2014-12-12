@@ -1,0 +1,25 @@
+   <header> 
+       <div> 
+          <div>                 	
+              <h1><a href="{% url 'home' %}"><img src="{{STATIC_URL}}/logox.jpg" style="height: 100px;; margin-top: -16px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"></a></h1> 
+              <nav>  
+                <ul class="menu" style="padding-top: 35px;">
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'chisiamo' %}">Chi Siamo</a></li>
+                      <li><a href="{% url 'sostienici' %}">Come Aderire</a></li>
+                      <li><a href="{% url 'news' %}">News</a></li>
+                      <li><a href="{% url 'link' %}">Link</a></li>
+                      <li>
+                        <a href="/language/it/">
+                        <img src="{{STATIC_URL}}/ita.png" style="height:32px">
+                        </a>
+                        <a href="/language/en/">
+                          <img src="{{STATIC_URL}}/UK_flag.png" style="height:32px">
+                        </a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="clear"></div>
+          </div>
+      </div>
+    </header> 

@@ -1,0 +1,7 @@
+
+
+{% for news in news_list %}
+	<h4>{{news.titolo}}</4>
+	<h6>{{news.pub_date}}</h6>
+	<p>{{news.body|safe|truncatechars:250}}</p>
+{% endfor %}

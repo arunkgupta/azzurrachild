@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--==============================content================================-->
+    <section id="content"></div>
+    	<div class="container_12 top">
+            <div class="grid_12">
+            	{% for news in news_list %}
+            	<h2>{{ news.titolo}}</h2>
+                <div class="box-5 right-1">
+                    {{news.body|safe}}                 
+                </div>
+                <hr>
+                {% endfor %}          
+                
+            </div>
+            
+            <div class="clear"></div>
+        </div>
+    </section> 
+
+    {% endblock %}

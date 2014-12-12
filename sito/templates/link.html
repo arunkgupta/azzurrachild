@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--==============================content================================-->
+    <section id="content"></div>
+    	<div class="container_12 top">
+            <div class="grid_12">
+            	{% for link in link_list %}
+            	<h2>{{ link.titolo}}</h2>
+                <div class="box-5 right-1">
+                    {{link.body|safe}}
+                    <br>
+                    <a href="{{link.url}}"><i class="fa fa-external-link-square"> {{link.url}}</i></a>
+                    <br>
+                    <a href="{{link.email}}"><i class="fa fa-envelope"> {{link.email}}</i></a>                
+                </div>
+                <hr>
+                {% endfor %}          
+                
+            </div>
+            
+            <div class="clear"></div>
+        </div>
+    </section> 
+
+    {% endblock %}

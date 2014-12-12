@@ -1,0 +1,36 @@
+
+
+
+<div class="tp-banner">
+      <ul>
+        {% for slider in slider_list %}
+        <!-- SLIDE  -->
+        <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+          <!-- MAIN IMAGE -->
+          {% load cropping %}
+          <img src="{% cropped_thumbnail slider "slider" %}"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+       
+        </li>
+        {% endfor %}
+
+      </ul>
+</div>
+
+
+
+
+<!-- LOOK THE DOCUMENTATION FOR MORE INFORMATIONS -->
+ <script type="text/javascript">
+        var revapi;
+        jQuery(document).ready(function() {
+             revapi = jQuery('.tp-banner').revolution(
+            {
+              delay:3000,
+              startwidth:1170,
+              startheight:500,
+              hideThumbs:10,
+              fullWidth:"on",
+              forceFullWidth:"off"
+            });
+        }); //ready
+      </script>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--==============================content================================-->
+    <section id="content"></div>
+    	<div class="container_12 top">
+            <div class="grid_8">
+            	{% for page in page_list %}
+            	<h2>{{ page.titolo}}</h2>
+                <div class="box-5 right-1">
+                    {{page.body|safe}}                 
+                </div>
+                <hr>
+                {% endfor %}
+          
+                
+            </div>
+
+
+            <div class="grid_4">
+            	<h2>Altro:</h2>
+                {% for page in page_list %}
+                <div class="box-6 top-5">{% load cropping %}
+                    <img src="{% cropped_thumbnail page "miniatura" %}" alt="" class="img-indent img-border" style="width: 300px; height: auto;">
+                </div>
+                {% endfor %}
+          			
+            </div>  
+            
+            <div class="clear"></div>
+        </div>
+    </section> 
+
+    {% endblock %}

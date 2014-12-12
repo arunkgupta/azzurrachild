@@ -1,6 +1,8 @@
 from django.db import models
 
 from image_cropping import ImageRatioField, ImageCropField
+from tinymce.models import HTMLField
+
 
 # Create your models here.
 
@@ -23,11 +25,27 @@ class Galleria(models.Model):
     def __unicode__(self):
         return self.titolo
 
+class Slider(models.Model):
+    titolo = models.CharField(max_length=100, verbose_name="Titolo del Progetto:")
+    titolo_uk = models.CharField(max_length=100, verbose_name="Titolo Inglese:")
+    link = models.CharField(max_length=100, verbose_name="Link")
+    image = models.ImageField(blank=True, null=True, upload_to='uploaded_images')
+    body = models.TextField(null=True, blank=True)
+    cropping = ImageRatioField('image', '1170x500')
+    slider = ImageRatioField('image', '870x480')
+    thumb = ImageRatioField('image', '132x94')
+    pub_date = models.DateTimeField('date published')
+
+    def __unicode__(self):
+        return self.titolo
+
 class Post(models.Model):
     titolo = models.CharField("Titolo:", max_length=100, null=True, blank=True)
     titolo_uk = models.CharField("Titolo Inglese:", max_length=100, null=True, blank=True)
-    body = models.TextField(null=True, blank=True, verbose_name="Descrizione")
-    body_uk = models.TextField(null=True, blank=True, verbose_name="Descrizione Inglese")
+    intro = models.TextField(null=True, blank=True, verbose_name="Intro")
+    intro_uk = models.TextField(null=True, blank=True, verbose_name="Intro Inglese")
+    body = HTMLField(null=True, blank=True, verbose_name="Descrizione")
+    body_uk = HTMLField(null=True, blank=True, verbose_name="Descrizione Inglese")
     image = models.ImageField(blank=True, null=True, upload_to='uploaded_images')
     miniatura = ImageRatioField('image', '500x281')
     cropping = ImageRatioField('image', '1200x675')
@@ -36,12 +54,36 @@ class Post(models.Model):
     
     def __unicode__(self):
         return self.titolo
+
+    class Meta:
+        verbose_name_plural = "Post"
 
 class Page(models.Model):
     titolo = models.CharField("Titolo:", max_length=100, null=True, blank=True)
     titolo_uk = models.CharField("Titolo Inglese:", max_length=100, null=True, blank=True)
-    body = models.TextField(null=True, blank=True, verbose_name="Descrizione")
-    body_uk = models.TextField(null=True, blank=True, verbose_name="Descrizione Inglese")
+    intro = models.TextField(null=True, blank=True, verbose_name="Intro")
+    intro_uk = models.TextField(null=True, blank=True, verbose_name="Intro Inglese")
+    body = HTMLField(null=True, blank=True, verbose_name="Descrizione")
+    body_uk = HTMLField(null=True, blank=True, verbose_name="Descrizione Inglese")
+    image = models.ImageField(blank=True, null=True, upload_to='uploaded_images')
+    miniatura = ImageRatioField('image', '300x200')
+    cropping = ImageRatioField('image', '1200x675')
+    galleria = models.ManyToManyField(Galleria, null=True, blank=True, verbose_name="Seleziona Immagini Galleria")
+    pub_date = models.DateTimeField('date published')
+    
+    def __unicode__(self):
+        return self.titolo
+
+    class Meta:
+        verbose_name_plural = "Progetti"
+
+class News(models.Model):
+    titolo = models.CharField("Titolo:", max_length=100, null=True, blank=True)
+    titolo_uk = models.CharField("Titolo Inglese:", max_length=100, null=True, blank=True)
+    intro = models.TextField(null=True, blank=True, verbose_name="Intro")
+    intro_uk = models.TextField(null=True, blank=True, verbose_name="Intro Inglese")
+    body = HTMLField(null=True, blank=True, verbose_name="Descrizione")
+    body_uk = HTMLField(null=True, blank=True, verbose_name="Descrizione Inglese")
     image = models.ImageField(blank=True, null=True, upload_to='uploaded_images')
     miniatura = ImageRatioField('image', '500x281')
     cropping = ImageRatioField('image', '1200x675')
@@ -51,16 +93,22 @@ class Page(models.Model):
     def __unicode__(self):
         return self.titolo
 
-class News(models.Model):
+    class Meta:
+        verbose_name_plural = "News"
+
+class Link(models.Model):
     titolo = models.CharField("Titolo:", max_length=100, null=True, blank=True)
     titolo_uk = models.CharField("Titolo Inglese:", max_length=100, null=True, blank=True)
+    email = models.CharField("Email:", max_length=100, null=True, blank=True)
+    url = models.CharField("Link:", max_length=100, null=True, blank=True)
     body = models.TextField(null=True, blank=True, verbose_name="Descrizione")
     body_uk = models.TextField(null=True, blank=True, verbose_name="Descrizione Inglese")
     image = models.ImageField(blank=True, null=True, upload_to='uploaded_images')
     miniatura = ImageRatioField('image', '500x281')
-    cropping = ImageRatioField('image', '1200x675')
-    galleria = models.ManyToManyField(Galleria, null=True, blank=True, verbose_name="Seleziona Immagini Galleria")
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
         return self.titolo
+
+    class Meta:
+        verbose_name_plural = "Link"

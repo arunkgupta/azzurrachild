@@ -9,20 +9,84 @@ from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 
-# Create your views here.
 
-
-'''
 def HomeView(request):
-	immagini_list = Immagini.objects.filter(categoria = '1').order_by('id')
-	dottori_list = Immagini.objects.filter(categoria = '2').order_by('id')
-	scelta_list = Immagini.objects.filter(categoria = '3').order_by('id')
-	context = {'immagini_list': immagini_list,
-				'dottori_list': dottori_list,
-				'scelta_list': scelta_list
+	language = "it"
+	session_language = "it"
+	if 'lang' in request.COOKIES:
+		language = request.COOKIES['lang']
+	if 'lang' in request.session:
+		session_language = request.session['lang']
+	
+	slider_list = Slider.objects.all()
+	news_list = News.objects.all()[:6]
+	blog_list = Post.objects.all()[:4]
+	page_list = Page.objects.all()[:6]
+	context = {'slider_list': slider_list,
+				'language':language,
+				'news_list': news_list,
+				'blog_list': blog_list,
+				'page_list': page_list
 				}
-   #return render_to_response('index.html', context_instance=RequestContext(request))
 	return render(request, 'index.html', context)
 
-'''
+def ProgettiView(request):
+	language = "it"
+	session_language = "it"
+	if 'lang' in request.COOKIES:
+		language = request.COOKIES['lang']
+	if 'lang' in request.session:
+		session_language = request.session['lang']
+
+	page_list = Page.objects.all()
+	context = {
+				'page_list': page_list,
+				'language':language
+				}
+	return render(request, 'progetti.html', context)
+
+def NewsView(request):
+	language = "it"
+	session_language = "it"
+	if 'lang' in request.COOKIES:
+		language = request.COOKIES['lang']
+	if 'lang' in request.session:
+		session_language = request.session['lang']
+
+	news_list = News.objects.all()
+	context = {
+				'news_list': news_list,
+				'language':language
+				}
+	return render(request, 'news.html', context)
+
+def LinkView(request):
+	language = "it"
+	session_language = "it"
+	if 'lang' in request.COOKIES:
+		language = request.COOKIES['lang']
+	if 'lang' in request.session:
+		session_language = request.session['lang']
+
+	link_list = Link.objects.all()
+	context = {
+				'link_list': link_list,
+				'language':language
+				}
+	return render(request, 'link.html', context)
+
+def ChisiamoView(request):
+	return render_to_response('chisiamo.html', context_instance=RequestContext(request))
+
+def SostieniciView(request):
+	return render_to_response('sostienici.html', context_instance=RequestContext(request))
+
+
+def language(request, language='it'):
+    response = HttpResponse("setting language to %s" % language)
+    response.set_cookie('lang', language)
+    request.session['lang'] = language
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+

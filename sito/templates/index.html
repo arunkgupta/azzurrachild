@@ -2,6 +2,62 @@
 
 {% block content %}
 
+{% include 'componenti/slider.html' %}
 
+<!--==============================content================================-->
+    <section id="content"></div>
+    	<div class="container_12">
+        	<div class="grid_6 box-1">
+				<img src="{{STATIC_URL}}/images/page1-img1.png" alt="">
+                <div class="extra-wrap">
+                	<h2>Chi Siamo</h2>
+                    <p>AZZURRA è un'associazione no profit nata nel 1999 da un'idea del dott. Salim Adib. I medici e i volontari di Azzurra offrono gratuitamente interventi e consulenze in riferimento alla diagnosi di gravi malformazioni...</p>
+                    <a href="{% url 'chisiamo' %}" class="button top-4">Vedi...</a>
+                </div>
+            </div>  
+            <div class="grid_6 box-1">
+				<img src="{{STATIC_URL}}/images/page1-img2.png" alt="">
+                <div class="extra-wrap">
+                	<h2>Sostienici</h2>
+                    <p>Come aderire ai progetti di Azzurra Onlus
+Scopo di Azzurra Onlus è quello di promuovere le donazioni di coloro che desiderano destinare risorse al perseguimento di finalità d'utilità sociale.</p>
+<a href="{% url 'sostienici' %}" class="button top-4">Vedi...</a>
+                </div>
+            </div>  
+            <div class="grid_12 box-2">
+            	<div>
+                    <p class="text-3">Benvenuto nel sito della nostra <span>Onlus!|</span> </p>
+                    <p class="text-4"></p>
+                </div>
+            </div>
+           
+           <div class="grid_8">
+            	<h2 class="top-1">Progetti</h2>
+                <div class="box-3">
+                	{% for page in page_list %}
+                	<div>{% load cropping %}
+                    	<img src="{% cropped_thumbnail page "miniatura" %}" alt="" class="img-border" style="width: 180px; heigth: 145px">
+                        <a href="#" class="link-2">Assistenza e consulenza medica</a>
+                        <p>{{page.body|safe|truncatechars:140}}</p>
+                        <a href="{% url 'progetti' %}" class="button top-4">Vedi...</a>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+            <div class="grid_4">
+            	<h2 class="top-1">News</h2>
+            	{% for news in news_list %}
+                <div class="box-4 top-2">
+                    <div class="date"><strong>{{news.pub_date|date:"d"}}</strong><span>{{news.pub_date|date:"M, Y"}}</span></div>
+                    <p><a href="#" class="link">{{news.titolo}}</a><br>{{news.body|safe|truncatechars:140}}</p>
+                </div>
+                {% endfor %}
+                <a href="{% url 'news' %}" class="button top-4">Vedi...</a>
+            </div>    
+            <div class="clear"></div>
+        </div>
+    </section> 
+<!--==============================footer=================================-->
 
 {% endblock %}

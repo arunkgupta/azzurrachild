@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Azzurra Child onlus</title>
+    <!--GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+    <!--REVOLUTION -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/rs-plugin/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/rs-plugin/css/navstylechange.css" media="screen" />
+    <script type="text/javascript" src="{{STATIC_URL}}/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/rs-plugin/css/settings.css" media="screen" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <!-- AWESOME FONT -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="{{STATIC_URL}}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/stile.css" rel="stylesheet">
+
+  </head>
+  <body>
+  	<!-- MENU -->
+  		{% include 'componenti/menu.html' %}
+  	<!-- FINE MENU -->
+
+  	{% block content %}
+
+    {% endblock %}
+
+    <footer>
+
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}/js/bootstrap.min.js"></script>
+  </body>
+</html>
